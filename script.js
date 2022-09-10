@@ -1,6 +1,7 @@
 const calculatorDisplay = document.querySelector("h1");
 const inputBtns = document.querySelectorAll("button");
 const clearBtn = document.getElementById("clear-btn");
+const backspaceBtn = document.getElementById("backspace-btn");
 
 // Calculate first and second values depending on operator
 const calculate = {
@@ -65,12 +66,27 @@ const useOperator = (operator) => {
 // Reset all values, display
 const resetAll = () => {
   calculatorDisplay.textContent = "0";
-  firstValue = 0;
+  firstValue = "";
   operatorValue = "";
   awaitingNextValue = false;
 };
 
-// Add Event Listeners for numbers, operators and decimal buttons
+// Backspace functionality
+const backspace = () => {
+  if (string.length > 1) {
+    calculatorDisplay.textContent = calculatorDisplay.textContent.slice(
+      0,
+      calculatorDisplay.textContent.length - 1
+    );
+  } else {
+    calculatorDisplay.textContent = "0";
+  }
+  awaitingNextValue = false;
+};
+
+// Event Listeners
+// 1. Clicks
+
 inputBtns.forEach((inputBtn) => {
   if (inputBtn.classList.length === 0) {
     inputBtn.addEventListener("click", () => sendNumberValue(inputBtn.value));
@@ -79,8 +95,29 @@ inputBtns.forEach((inputBtn) => {
   } else if (inputBtn.classList.contains("decimal")) {
     inputBtn.addEventListener("click", () => addDecimal());
   }
-  inputBtn.addEventListener;
 });
 
-// Event Listener
 clearBtn.addEventListener("click", resetAll);
+backspaceBtn.addEventListener("click", backspace);
+
+// 2. Keypress
+
+document.body.addEventListener("keydown", (e) => {
+  inputBtns.forEach((inputBtn, index, inputBtns) => {
+    if (e.key === inputBtn.value) {
+      inputBtn.click();
+    }
+    if (e.key === "Enter" && inputBtn.value === "=") {
+      const equalBtn = inputBtns[index];
+      equalBtn.click();
+    }
+  });
+
+  if (e.key === "Delete") {
+    clearBtn.click();
+  }
+
+  if (e.key === "Backspace") {
+    backspaceBtn.click();
+  }
+});

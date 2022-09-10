@@ -102,8 +102,15 @@ button:focus {
 
 .equal-sign {
   grid-column: 4/5;
-  grid-row: 2/6;
+  grid-row: 3/6;
   background-color: rgb(13, 206, 87);
+}
+
+#backspace-btn {
+  grid-row: 2/3;
+  grid-column: 4/5;
+  background-color: rgb(233, 124, 21);
+  color: white;
 }
 
 /* Media Query: Large Smartphone (Vertical) */
