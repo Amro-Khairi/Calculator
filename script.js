@@ -15,7 +15,7 @@ const calculate = {
   "=": (_firstNumber, secondNumber) => secondNumber,
 };
 
-let firstValue = 0;
+let firstValue = "";
 let operatorValue = "";
 let awaitingNextValue = false;
 
@@ -50,7 +50,7 @@ const useOperator = (operator) => {
     return;
   }
   // Assign firstValue if no value
-  if (!firstValue) {
+  if (firstValue === "") {
     firstValue = currentValue;
   } else {
     const calculation = calculate[operatorValue](firstValue, currentValue);
