@@ -73,7 +73,7 @@ const resetAll = () => {
 
 // Backspace functionality
 const backspace = () => {
-  if (string.length > 1) {
+  if (calculatorDisplay.textContent.length > 1) {
     calculatorDisplay.textContent = calculatorDisplay.textContent.slice(
       0,
       calculatorDisplay.textContent.length - 1
